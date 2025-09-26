@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.webapp.name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Values.webapp.name }}
+    group: {{ .Values.webapp.group }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.webapp.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.webapp.name }}
+    spec:
+      #securityContext:
+      #  runAsUser: 1234 # Specify the desired user ID
+      #  runAsGroup: 1234 # Specify the desired group ID
+      #  fsGroup: 1234 # Specify the desired group ID for volume ownership
+      volumes:
+        - name: {{ .Values.webapp.volume.name }}
+          nfs:
+            server: {{ .Values.webapp.volume.server }}
+            path: {{ .Values.webapp.volume.path }}
+            readOnly: {{ .Values.webapp.volume.readOnly }}
+      containers:
+      - name: {{ .Values.webapp.name }}
+        image: {{ .Values.webapp.container.image }}
+        resources:
+          limits:
+            memory: {{ .Values.webapp.container.memory }}
+            cpu: {{ .Values.webapp.container.cpu }}
+        ports:
+        - containerPort: {{ .Values.webapp.container.port }}
+        volumeMounts:
+        - mountPath: /data/ 
+          name: {{ .Values.webapp.volume.name }}

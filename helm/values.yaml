@@ -1,0 +1,21 @@
+replicaCount: 1
+
+webapp:
+  name: openv-ncar-dashboard
+  group: openv-ncar-dashboard
+  path: /
+  tls:
+    fqdn: era5.k8s.ucar.edu
+    secretName: incommon-cert-openv
+  container: 
+    image: docker.io/potatofever/openv-ncar-dashboard:v1.0.0
+    port: 8080
+    memory: 16G
+    cpu: 2
+    responseTimeout: 180
+    maxUploadSize: 30m
+  volume:
+    name: campaign 
+    server: gladedm1.ucar.edu
+    path: /glade/campaign/work/dpanta/era5/idx/2T
+    readOnly: true
