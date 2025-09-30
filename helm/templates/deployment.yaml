@@ -30,7 +30,8 @@ spec:
       - name: {{ .Values.webapp.name }}
         image: {{ .Values.webapp.container.image }}
         env:
-          IDX_PATH: {{ .Values.webapp.container.IDX_PATH }} 
+          - name: IDX_PATH
+            value: {{ .Values.webapp.container.IDX_PATH }} 
         resources:
           limits:
             memory: {{ .Values.webapp.container.memory }}
