@@ -9,11 +9,12 @@ webapp:
     secretName: incommon-cert-openv
   container: 
     image: docker.io/potatofever/openv-ncar-dashboard:v1.0.0
-    port: 8080
+    port: 8000
     memory: 16G
     cpu: 2
     responseTimeout: 180
     maxUploadSize: 30m
+    IDX_PATH: /data/era5_sfc_2T_zip.idx
   volume:
     name: campaign 
     server: gladedm1.ucar.edu
