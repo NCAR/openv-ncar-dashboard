@@ -42,7 +42,7 @@ EXPOSE 8000
 
 ENV PANEL_PORT=8000
 ENV ALLOW_ORIGIN="*"
-ENV IDX_PATH=""
+ENV IDX_PATH="/data/era5_sfc_2T_zip.idx"
 
 CMD bash -lc ' \
     if [ -z "$IDX_PATH" ]; then \

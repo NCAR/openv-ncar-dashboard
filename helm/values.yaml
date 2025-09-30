@@ -8,7 +8,7 @@ webapp:
     fqdn: era5.k8s.ucar.edu
     secretName: incommon-cert-openv
   container: 
-    image: docker.io/potatofever/openv-ncar-dashboard:v1.0.0
+    image: docker.io/potatofever/openv-ncar-dashboard:v1.0.2
     port: 8000
     memory: 16G
     cpu: 2
